@@ -382,6 +382,7 @@ void DotForward_(const nnvm::NodeAttrs& attrs,
       inputs[1].get_with_shape<xpu, 2, real_t>(Shape2(mb, nb), s);
     Tensor<xpu, 2, real_t> out =
       outputs[0].get_with_shape<xpu, 2, real_t>(Shape2(m, n), s);
+
     if (param.transpose_a && param.transpose_b) {
       ASSIGN_DISPATCH(out, req[0], dot(input0.T(), input1.T()));
     } else if (!param.transpose_a && param.transpose_b) {
